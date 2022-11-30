@@ -1,3 +1,4 @@
+import 'package:candly/services/authentication_services/firebase_auth_service.dart';
 import 'package:candly/widgets/auth_widgets/otp_request._widget.dart';
 import 'package:candly/widgets/auth_widgets/otp_verification_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
-    print(mediaQuery.width);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SizedBox(
@@ -46,7 +46,6 @@ class _AuthScreenState extends State<AuthScreen> {
             Align(
                 alignment: Alignment.bottomCenter,
                 child: AnimatedContainer(
-
                     margin: EdgeInsets.symmetric(
                         horizontal: mediaQuery.height * .015,
                         vertical: mediaQuery.height * .013),
@@ -56,7 +55,6 @@ class _AuthScreenState extends State<AuthScreen> {
                         : mediaQuery.height * .3,
                     duration: const Duration(milliseconds: 50),
                     child: Card(
-
                         color: Theme.of(context).cardColor,
                         shape: RoundedRectangleBorder(
                             side: BorderSide(
@@ -68,7 +66,8 @@ class _AuthScreenState extends State<AuthScreen> {
                           setState(() {
                             isOtpVerScreen = false;
                           });
-                        },phoneNo: phoneNo):OtpRequest(reqOtp: (value) {
+                        },phoneNo: phoneNo):OtpRequest(reqOtp: (value) async{
+                          await FirebaseAuthService.requestOtp(value, context);
                           phoneNo = value;
                           setState(() {
                             isOtpVerScreen = true;

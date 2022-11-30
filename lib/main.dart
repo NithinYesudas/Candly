@@ -1,5 +1,6 @@
 import 'package:candly/screens/authentication/auth_screen.dart';
 import 'package:candly/screens/loading_Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +25,16 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder(
             future: Firebase.initializeApp(),
             builder: (ctx, snapshot) {
+
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingScreen();
               } else {
-                return  AuthScreen();
+                //FirebaseAuth.instance.signOut();
+                return StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                    builder: (ctx, AsyncSnapshot snapshots){
+                  return snapshots.hasData ? const LoadingScreen(): const AuthScreen();
+                }) ;
               }
             }));
   }

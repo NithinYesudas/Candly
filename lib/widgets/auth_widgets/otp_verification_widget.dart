@@ -1,3 +1,6 @@
+import 'package:candly/services/authentication_services/firebase_auth_service.dart';
+import 'package:candly/widgets/snackbar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -14,6 +17,12 @@ class OtpVerification extends StatefulWidget {
 
 class _OtpVerificationState extends State<OtpVerification> {
   final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +82,19 @@ class _OtpVerificationState extends State<OtpVerification> {
           ),
         ),
         InkWell(
-            onTap: () {},
+            onTap: () async {
+              try {
+                //otp verification using verification id got from sending phone no
+                PhoneAuthCredential credential = PhoneAuthProvider.credential(
+                    verificationId: FirebaseAuthService.verificationId,
+                    smsCode: _controller.text.trim());
+
+                // Sign the user in (or link) with the credential
+                await FirebaseAuth.instance.signInWithCredential(credential);
+              } on FirebaseAuthException catch (error) {
+                AccessoryWidgets.snackBar(context, error.message as String);
+              }
+            },
             child: Container(
               width: mediaQuery.width * .6,
               height: mediaQuery.height * .0614,

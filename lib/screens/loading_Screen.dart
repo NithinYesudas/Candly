@@ -14,6 +14,7 @@ class LoadingScreen extends StatelessWidget {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/login_screen_image.png"))),
+        child: Center(child: Text("Candly",style: TextStyle(fontFamily: "Array",fontSize: mediaQuery.width*.08,color: Colors.white),),),
       ),
     );
   }
