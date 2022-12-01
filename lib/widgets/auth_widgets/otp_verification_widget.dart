@@ -1,15 +1,18 @@
+
+
 import 'package:candly/services/authentication_services/firebase_auth_service.dart';
+import 'package:candly/widgets/auth_widgets/resendotpbutton.dart';
 import 'package:candly/widgets/snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
+
 
 class OtpVerification extends StatefulWidget {
   const OtpVerification(
       {super.key, required this.backButton, required this.phoneNo});
 
   final Function backButton;
-  final String? phoneNo;
+  final String phoneNo;
 
   @override
   State<OtpVerification> createState() => _OtpVerificationState();
@@ -17,17 +20,19 @@ class OtpVerification extends StatefulWidget {
 
 class _OtpVerificationState extends State<OtpVerification> {
   final TextEditingController _controller = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
     _controller.dispose();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
-    return Column(
+    return isLoading? const Center(child: CircularProgressIndicator()):Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +95,17 @@ class _OtpVerificationState extends State<OtpVerification> {
                     smsCode: _controller.text.trim());
 
                 // Sign the user in (or link) with the credential
-                await FirebaseAuth.instance.signInWithCredential(credential);
+                setState(() {
+                  isLoading = true;
+                });
+
+                await FirebaseAuth.instance
+                    .signInWithCredential(credential)
+                    .whenComplete(() {
+                  setState(() {
+                    isLoading = false;
+                  });
+                });
               } on FirebaseAuthException catch (error) {
                 AccessoryWidgets.snackBar(context, error.message as String);
               }
@@ -115,16 +130,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                       fontFamily: "Khand",
                       fontWeight: FontWeight.w600)),
             )),
-        TextButton(
-            onPressed: () {},
-            child: Text(
-              "Resend Code",
-              style: TextStyle(
-                  fontFamily: "Khand",
-                  fontWeight: FontWeight.w600,
-                  fontSize: mediaQuery.width * .0456,
-                  color: Theme.of(context).primaryColor),
-            ))
+        ResendOtpButton(widget.phoneNo)
       ],
     );
   }

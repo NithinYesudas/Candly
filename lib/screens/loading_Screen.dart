@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class LoadingScreen extends StatelessWidget {
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/login_screen_image.png"))),
-        child: Center(child: Text("Candly",style: TextStyle(fontFamily: "Array",fontSize: mediaQuery.width*.08,color: Colors.white),),),
+        child: Center(child: ElevatedButton(onPressed:(){FirebaseAuth.instance.signOut();},child: Text("Candly",style: TextStyle(fontFamily: "Array",fontSize: mediaQuery.width*.08,color: Colors.white),)),),
       ),
     );
   }

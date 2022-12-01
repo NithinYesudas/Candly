@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:candly/services/authentication_services/firebase_auth_service.dart';
 import 'package:candly/widgets/auth_widgets/otp_request._widget.dart';
 import 'package:candly/widgets/auth_widgets/otp_verification_widget.dart';
+import 'package:candly/widgets/snackbar.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -11,8 +16,58 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  bool isConnected = true;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
+  @override
+  void initState() {
+    initConnectivity();
+    _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
   bool isOtpVerScreen = false;
-  String? phoneNo;
+  String phoneNo = "";
+  Future<void> initConnectivity() async {
+    late ConnectivityResult result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      print('Couldn\'t check connectivity status');
+      return;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    print(result.name);
+    if(result.name == "none" && isConnected){
+      isConnected = false;
+      AccessoryWidgets.snackBar(context, "You're Offline",bgColor: Colors.redAccent);
+
+    }
+    else if(!isConnected){
+      isConnected = true;
+      AccessoryWidgets.snackBar(context, "Back Online",bgColor: Colors.lightGreen);
+
+
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
@@ -78,5 +133,9 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     );
+  }
+  void getConnection(){
+    bool isDeviceConnected =false;
+
   }
 }
