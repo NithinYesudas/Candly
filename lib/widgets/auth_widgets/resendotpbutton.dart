@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:candly/services/authentication_services/firebase_auth_service.dart';
-import 'package:candly/widgets/snackbar.dart';
+import 'package:candly/widgets/accessoryWidgets.dart';
 import 'package:flutter/material.dart';
 
 class ResendOtpButton extends StatefulWidget {

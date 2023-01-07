@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:candly/services/authentication_services/firebase_auth_service.dart';
 import 'package:candly/widgets/auth_widgets/otp_request._widget.dart';
 import 'package:candly/widgets/auth_widgets/otp_verification_widget.dart';
-import 'package:candly/widgets/snackbar.dart';
+import 'package:candly/widgets/accessoryWidgets.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../helpers/custom_colors.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -72,7 +74,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: CustomColors.background,
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
@@ -110,11 +112,11 @@ class _AuthScreenState extends State<AuthScreen> {
                         : mediaQuery.height * .3,
                     duration: const Duration(milliseconds: 50),
                     child: Card(
-                        color: Theme.of(context).cardColor,
+                        color: CustomColors.surface2,
                         shape: RoundedRectangleBorder(
                             side: BorderSide(
                                 width: 2,
-                                color: Theme.of(context).selectedRowColor),
+                                color: CustomColors.surface3),
                             borderRadius: BorderRadius.circular(10)),
                         child: isOtpVerScreen? OtpVerification(backButton: (){
 
@@ -134,8 +136,5 @@ class _AuthScreenState extends State<AuthScreen> {
       ),
     );
   }
-  void getConnection(){
-    bool isDeviceConnected =false;
 
-  }
 }

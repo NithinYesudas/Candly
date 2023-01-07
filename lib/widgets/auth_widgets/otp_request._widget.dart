@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import '../../helpers/custom_colors.dart';
+
 class OtpRequest extends StatefulWidget {
   const OtpRequest({super.key, required this.reqOtp});
 
@@ -49,7 +51,7 @@ class _OtpRequestState extends State<OtpRequest> {
                 fontWeight: FontWeight.w600),
             decoration: InputDecoration(
                 filled: true,
-                fillColor: Theme.of(context).selectedRowColor,
+                fillColor: CustomColors.surface3,
                 border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(10))),
@@ -76,8 +78,8 @@ class _OtpRequestState extends State<OtpRequest> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   gradient: LinearGradient(colors: [
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).primaryColorDark
+                    CustomColors.primary,
+                    CustomColors.primaryDark
                   ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
               padding: EdgeInsets.symmetric(
                   vertical: mediaQuery.height * .0153,
