@@ -1,4 +1,4 @@
-import 'package:candly/services/authentication_services/firebase_auth_service.dart';
+import 'package:candly/services/firebase_auth_service.dart';
 import 'package:candly/widgets/auth_widgets/resendotpbutton.dart';
 import 'package:candly/widgets/accessoryWidgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';

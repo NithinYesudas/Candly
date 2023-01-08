@@ -1,4 +1,4 @@
-import 'package:candly/screens/authentication/auth_screen.dart';
+import 'package:candly/screens/auth_screen.dart';
 import 'package:candly/screens/homepage.dart';
 import 'package:candly/screens/loading_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:candly/services/authentication_services/firebase_auth_service.dart';
+import 'package:candly/services/firebase_auth_service.dart';
 import 'package:candly/widgets/auth_widgets/otp_request._widget.dart';
 import 'package:candly/widgets/auth_widgets/otp_verification_widget.dart';
 import 'package:candly/widgets/accessoryWidgets.dart';
@@ -8,7 +8,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../helpers/custom_colors.dart';
+import '../helpers/custom_colors.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
