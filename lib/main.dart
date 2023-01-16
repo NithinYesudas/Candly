@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
-}
+}g
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
