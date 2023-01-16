@@ -14,8 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
@@ -85,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: Column(
-          children: const[
+          children: const [
             //Listview of charts, current investment, and list of transactions
             ListChartsTrans(),
             //Bottom Control Centre
