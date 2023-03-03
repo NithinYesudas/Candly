@@ -8,39 +8,33 @@ import 'package:flutter/material.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
-}g
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-
         home: FutureBuilder(
-
             future: Firebase.initializeApp(),
             builder: (ctx, snapshot) {
-
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingScreen();
               } else {
-
-
                 return StreamBuilder(
-                  stream: FirebaseAuth.instance.authStateChanges(),
-                    builder: (ctx, AsyncSnapshot snapshots){
-                    if(snapshots.connectionState == ConnectionState.waiting){
-                      return const LoadingScreen();
-                    }
-                  return snapshots.hasData ?  HomeScreen(): const AuthScreen();
-                }) ;
+                    stream: FirebaseAuth.instance.authStateChanges(),
+                    builder: (ctx, AsyncSnapshot snapshots) {
+                      if (snapshots.connectionState ==
+                          ConnectionState.waiting) {
+                        return const LoadingScreen();
+                      }
+                      return snapshots.hasData
+                          ? const HomeScreen()
+                          : const AuthScreen();
+                    });
               }
             }));
   }
-
-
 }

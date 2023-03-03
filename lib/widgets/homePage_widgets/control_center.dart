@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/custom_colors.dart';
+
 class ControlCentre extends StatelessWidget {
   const ControlCentre({Key? key}) : super(key: key);
 
@@ -14,13 +15,16 @@ class ControlCentre extends StatelessWidget {
           border: Border.all(width: 2, color: CustomColors.surface3),
           color: CustomColors.surface2,
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15))),
+              topLeft: Radius.circular(15), topRight: Radius.circular(15))),
       child: Row(
         children: [
           SizedBox(
             width: mediaQuery.width * .55,
-            child: Column(),
+            child: Column(
+              children: [
+                
+              ],
+            ),
           ),
           SizedBox(
             width: mediaQuery.width * .4,
@@ -29,8 +33,9 @@ class ControlCentre extends StatelessWidget {
                 InkWell(
                     onTap: () {},
                     child: Container(
-                      margin: EdgeInsets.only(top
-                          : mediaQuery.height*.03,bottom: mediaQuery.height*.01),
+                      margin: EdgeInsets.only(
+                          top: mediaQuery.height * .03,
+                          bottom: mediaQuery.height * .01),
                       height: mediaQuery.height * .055,
                       width: mediaQuery.width * .32,
                       decoration: BoxDecoration(
@@ -45,29 +50,31 @@ class ControlCentre extends StatelessWidget {
                       child: Center(
                         child: Text(
                           "GREEN",
-                          style: TextStyle(fontFamily: "Khand",color: Colors.white,fontSize: mediaQuery.width*.042),
+                          style: TextStyle(
+                              fontFamily: "Khand",
+                              color: Colors.white,
+                              fontSize: mediaQuery.width * .042),
                         ),
                       ),
                     )),
                 InkWell(
                     onTap: () {},
                     child: Container(
-
                       height: mediaQuery.height * .055,
                       width: mediaQuery.width * .32,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           gradient: LinearGradient(
-                              colors: [
-                                CustomColors.red,
-                                CustomColors.redDark
-                              ],
+                              colors: [CustomColors.red, CustomColors.redDark],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight)),
                       child: Center(
                         child: Text(
                           "RED",
-                          style: TextStyle(fontFamily: "Khand",color: Colors.white,fontSize: mediaQuery.width*.042),
+                          style: TextStyle(
+                              fontFamily: "Khand",
+                              color: Colors.white,
+                              fontSize: mediaQuery.width * .042),
                         ),
                       ),
                     ))

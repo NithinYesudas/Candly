@@ -13,11 +13,13 @@ class ListChartsTrans extends StatelessWidget {
       child: ListView(
         children: [
           SizedBox(
-            height: mediaQuery.height * .13,
+            height: mediaQuery.height * .15,
             child: WebViewWidget(
-              controller:  ChartServices(context).lineController,
+              controller:  ChartServices(context).lineController,//for the line chart
+            )
+
             ),
-          ),
+
           SizedBox(
             height: mediaQuery.height * .09,
             width: double.infinity,
@@ -47,7 +49,7 @@ class ListChartsTrans extends StatelessWidget {
           ),
           SizedBox(
               height: mediaQuery.height * .22,
-              child: WebViewWidget(controller: ChartServices(context).candleController)),
+              child: WebViewWidget(controller: ChartServices(context).candleController)),//for the candle chart
         ],
       ),
     );
