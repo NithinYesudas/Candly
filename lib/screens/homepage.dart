@@ -84,11 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: Column(
-          children:  [
+          children:   [
             //Listview of charts, current investment, and list of transactions
+
              ListChartsTrans(),
             //Bottom Control Centre
-            const ControlCentre()
+
+           const ControlCentre()
           ],
         ));
   }

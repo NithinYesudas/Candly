@@ -7,15 +7,9 @@ class ChartServices {
 
   ChartServices() {
     lineController
-      ..loadRequest(
-
-
-          Uri.parse('https://spontaneous-phoenix-0fa069.netlify.app'))
+      ..loadRequest(Uri.parse('https://spontaneous-phoenix-0fa069.netlify.app'))
       ..enableZoom(true)
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(CustomColors.background);
-
-
-
-}}
-
+  }
+}

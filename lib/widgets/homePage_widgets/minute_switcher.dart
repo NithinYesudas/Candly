@@ -51,10 +51,9 @@ class MinuteSwitcherState extends State<MinuteSwitcher> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       widget.value1,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
-                          // fontWeight: FontWeight.bold,
                           fontFamily: "Khand"),
                     ),
                   ),
@@ -77,8 +76,8 @@ class MinuteSwitcherState extends State<MinuteSwitcher> {
               curve: Curves.easeInOut,
               top: 0,
               bottom: 0,
-              left: _isSwitched ? mediaQuery.height*.1 : 0,
-              right: _isSwitched ? 0 : mediaQuery.height*.1,
+              left: _isSwitched ? mediaQuery.height * .1 : 0,
+              right: _isSwitched ? 0 : mediaQuery.height * .1,
               child: Container(
                 width: mediaQuery.width * .2,
                 decoration: BoxDecoration(
