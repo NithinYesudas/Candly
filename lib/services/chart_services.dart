@@ -20,7 +20,9 @@ class ChartServices {
         ),
       )
       ..loadRequest(
-          Uri.parse('https://luminous-hummingbird-98cda0.netlify.app/'));
+          Uri.parse('https://boisterous-starburst-d0d61b.netlify.app'));
+
+
 
     candleController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -40,4 +42,5 @@ class ChartServices {
 
   late WebViewController lineController;
   late WebViewController candleController;
+
 }
