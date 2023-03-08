@@ -1,3 +1,5 @@
+import 'package:candly/widgets/homePage_widgets/amountSection.dart';
+import 'package:candly/widgets/homePage_widgets/minute_switcher.dart';
 import 'package:flutter/material.dart';
 
 import '../../helpers/custom_colors.dart';
@@ -19,13 +21,19 @@ class ControlCentre extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: mediaQuery.width * .55,
-            child: Column(
-              children: [
-                
-              ],
-            ),
-          ),
+              width: mediaQuery.width * .55,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  MinuteSwitcher(
+                    value1: '1min',
+                    value2: "5min",
+                  ),
+                  AmountSelection(),
+                ],
+              ) //for the amount field and it's buttons
+
+              ),
           SizedBox(
             width: mediaQuery.width * .4,
             child: Column(
@@ -40,6 +48,8 @@ class ControlCentre extends StatelessWidget {
                       width: mediaQuery.width * .32,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                              width: 3, color: CustomColors.greenDark),
                           gradient: LinearGradient(
                               colors: [
                                 CustomColors.green,
@@ -64,6 +74,8 @@ class ControlCentre extends StatelessWidget {
                       width: mediaQuery.width * .32,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
+                          border:
+                              Border.all(width: 3, color: CustomColors.redDark),
                           gradient: LinearGradient(
                               colors: [CustomColors.red, CustomColors.redDark],
                               begin: Alignment.topLeft,

@@ -50,13 +50,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           horizontal: mediaQuery.width * .02)),
                       backgroundColor:
                           MaterialStateProperty.all(CustomColors.surface1)),
-                  label: const Text(
+                  label:  Text(
                     "\$500",
                     style: TextStyle(
+                      fontSize: mediaQuery.width*.05,
                         fontFamily: "Khand", fontWeight: FontWeight.w600),
                   ),
                   icon: SizedBox(
-                      width: mediaQuery.width * .07,
+                      width: mediaQuery.width * .08,
                       child: Image.asset(
                         "assets/images/coin.png",
                         fit: BoxFit.contain,
@@ -83,11 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: Column(
-          children: const [
+          children:  [
             //Listview of charts, current investment, and list of transactions
-            ListChartsTrans(),
+             ListChartsTrans(),
             //Bottom Control Centre
-            ControlCentre()
+            const ControlCentre()
           ],
         ));
   }
